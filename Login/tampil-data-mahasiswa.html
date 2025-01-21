@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tampil Data Mahasiswa</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #eef9ff;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      .header {
+        background-color: #ff5722;
+        color: #fff;
+        text-align: center;
+        padding: 15px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        border-radius: 8px 8px 0 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      table th,
+      table td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      .btn-back {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 1rem;
+        text-decoration: none;
+        border-radius: 5px;
+        width: 150px;
+      }
+
+      .btn-back:hover {
+        background-color: #1976d2;
+      }
+
+      .btn-delete {
+        background-color: #e53935;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-delete:hover {
+        background-color: #c62828;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">Data Mahasiswa</div>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>NPM</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Telepon</th>
+            <th>Alamat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="dataTable">
+          <!-- Data akan dimasukkan di sini -->
+        </tbody>
+      </table>
+      <a href="home.html" class="btn-back">Kembali ke Beranda</a>
+    </div>
+
+    <script>
+      function tampilkanData() {
+        const mahasiswa = JSON.parse(localStorage.getItem("mahasiswa")) || [];
+        const dataTable = document.getElementById("dataTable");
+
+        dataTable.innerHTML = ""; // Bersihkan tabel
+
+        if (mahasiswa.length === 0) {
+          dataTable.innerHTML = `<tr><td colspan="7" style="text-align: center;">Tidak ada data mahasiswa</td></tr>`;
+        } else {
+          mahasiswa.forEach((mhs, index) => {
+            const row = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${mhs.npm}</td>
+                            <td>${mhs.nama}</td>
+                            <td>${mhs.kelas}</td>
+                            <td>${mhs.telepon}</td>
+                            <td>${mhs.alamat}</td>
+                            <td><button class="btn-delete" onclick="hapusData(${index})">Hapus</button></td>
+                        </tr>
+                    `;
+            dataTable.innerHTML += row;
+          });
+        }
+      }
+
+      function hapusData(index) {
+        const mahasiswa = JSON.parse(localStorage.getItem("mahasiswa")) || [];
+
+        // Konfirmasi penghapusan
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+          mahasiswa.splice(index, 1); // Hapus data pada indeks yang dipilih
+          localStorage.setItem("mahasiswa", JSON.stringify(mahasiswa)); // Update localStorage
+          tampilkanData(); // Tampilkan ulang data
+          alert("Data berhasil dihapus.");
+        }
+      }
+
+      // Tampilkan data saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", tampilkanData);
+    </script>
+  </body>
+</html>

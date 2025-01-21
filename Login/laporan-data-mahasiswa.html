@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laporan Data Mahasiswa</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .header {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .content {
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .content h3 {
+        font-size: 1.2rem;
+        color: #333;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #4caf50;
+        padding-bottom: 5px;
+      }
+
+      .content p {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+      }
+
+      .content p:nth-child(odd) {
+        background-color: #eef9ee;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        font-size: 0.9rem;
+        border-top: 1px solid #ddd;
+      }
+
+      .footer a {
+        color: white;
+        text-decoration: underline;
+      }
+
+      .btn-back {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 1rem;
+        text-decoration: none;
+        border-radius: 5px;
+        width: 150px;
+      }
+
+      .btn-back:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">Laporan Data Mahasiswa</div>
+      <div class="content" id="laporan">
+        <!-- Data laporan mahasiswa akan ditampilkan di sini -->
+      </div>
+      <a href="home.html" class="btn-back">Kembali Ke Beranda</a>
+
+      <div class="footer">&copy; 2025 Dwicky Apriawan 202243501857</div>
+    </div>
+
+    <script>
+      // Ambil data dari LocalStorage
+      const mahasiswa = JSON.parse(localStorage.getItem("mahasiswa")) || [];
+      const laporanDiv = document.getElementById("laporan");
+
+      // Buat laporan
+      mahasiswa.forEach((mhs, index) => {
+        const laporan = `
+                <p>
+                    <strong>${index + 1}. ${mhs.nama}</strong> 
+                    <br><strong>NPM:</strong> ${mhs.npm}
+                    <br><strong>Kelas:</strong> ${mhs.kelas}
+                    <br><strong>Telepon:</strong> ${mhs.telepon}
+                    <br><strong>Alamat:</strong> ${mhs.alamat}
+                </p>
+            `;
+        laporanDiv.innerHTML += laporan;
+      });
+    </script>
+  </body>
+</html>

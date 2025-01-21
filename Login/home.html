@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-content">
+          <img
+            src="img/logo.png"
+            alt="Logo Universitas Indraprasta PGRI"
+            class="logo"
+          />
+          <div class="header-text">
+            <h1>UNIVERSITAS INDRAPRASTA PGRI</h1>
+            <p>Jl. Nangka No.58 Tanjung Barat - Jaksel</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="frame">
+          <h2>DATA KAMPUS A</h2>
+          <a href="input-data-mahasiswa.html" class="button"
+            >Input Data Mahasiswa</a
+          >
+
+          <a href="tampil-data-mahasiswa.html" class="button"
+            >Tampil Data Mahasiswa</a
+          >
+          <a href="laporan-data-mahasiswa.html" class="button"
+            >Laporan Data Mahasiswa</a
+          >
+        </div>
+        <div class="frame">
+          <h2>DATA KAMPUS B</h2>
+          <button>Input Data Mahasiswa</button>
+          <button>Tampil Data Mahasiswa</button>
+          <button>Laporan Data Mahasiswa</button>
+        </div>
+        <div class="frame">
+          <h2>DATA KAMPUS C</h2>
+          <button>Input Data Mahasiswa</button>
+          <button>Tampil Data Mahasiswa</button>
+          <button>Laporan Data Mahasiswa</button>
+        </div>
+      </div>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+
+      <div class="footer">
+        <p>Created By @202243501857 Dwicky A.R.W Tahun 2024-25</p>
+      </div>
+    </div>
+    <script>
+      function logout() {
+        alert("Anda telah logout.");
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>
